@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "splitfair"
+version = "1.0.0"
+description = "Expense splitter with min-cash-flow settlement (fewest transfers)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Parth", email = "parthmanchanda87@gmail.com" }]
+keywords = ["expenses", "splitwise", "roommates", "settlement", "cli"]
+dependencies = ["matplotlib>=3.6"]
+
+[project.scripts]
+splitfair = "splitfair.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/872000/splitfair"
+
+[tool.setuptools.packages.find]
+include = ["splitfair*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
