@@ -54,3 +54,10 @@ def test_single_creditor_many_debtors():
     transfers = min_cash_flow(net)
     assert len(transfers) == 3
     assert all(t.to_member == "A" for t in transfers)
+
+
+def test_rejects_unbalanced_net():
+    import pytest
+
+    with pytest.raises(ValueError, match="sum to zero"):
+        min_cash_flow({"A": 5000, "B": -4999})

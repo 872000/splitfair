@@ -34,7 +34,13 @@ def min_cash_flow(net: dict[str, int]) -> list[Transfer]:
 
     Returns:
         List of transfers; applying them settles every debt.
+
+    Raises:
+        ValueError: if the balances don't sum to zero (nothing can settle
+            an unbalanced ledger — this usually means a bug upstream).
     """
+    if sum(net.values()) != 0:
+        raise ValueError("net balances must sum to zero before settling")
     # [name, amount] pairs, sorted largest-first; mutate amounts in place.
     debtors = sorted(
         ([name, -bal] for name, bal in net.items() if bal < 0),
