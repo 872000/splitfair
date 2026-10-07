@@ -61,3 +61,12 @@ def test_rejects_unbalanced_net():
 
     with pytest.raises(ValueError, match="sum to zero"):
         min_cash_flow({"A": 5000, "B": -4999})
+
+
+def test_transfer_rejects_nonpositive_amounts():
+    import pytest
+
+    with pytest.raises(ValueError, match="positive"):
+        Transfer("A", "B", 0)
+    with pytest.raises(ValueError, match="positive"):
+        Transfer("A", "B", -250)
